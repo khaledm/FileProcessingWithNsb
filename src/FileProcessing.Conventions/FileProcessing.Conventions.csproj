@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B279F934-FE2D-4552-A772-946A9245279E}</ProjectGuid>
+    <ProjectGuid>{31BDB452-A23C-40CF-B95A-9B4B0202E6DF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FileProcessing.Messages</RootNamespace>
-    <AssemblyName>FileProcessing.Messages</AssemblyName>
+    <RootNamespace>FileProcessing.Conventions</RootNamespace>
+    <AssemblyName>FileProcessing.Conventions</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,19 +30,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NServiceBus.6.4.3\lib\net452\NServiceBus.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\RetrieveFile.cs" />
-    <Compile Include="Commands\StartProcessingFile.cs" />
+    <Compile Include="MessageConventions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Events\" />
-    <Folder Include="InternalMessages\" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileProcessing.Messages\FileProcessing.Messages.csproj">
+      <Project>{b279f934-fe2d-4552-a772-946a9245279e}</Project>
+      <Name>FileProcessing.Messages</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,10 +1,9 @@
-namespace FileWatcher
+namespace FileRetriver
 {
     using NServiceBus;
-    using Serilog;
     using NServiceBus.Logging;
     using NServiceBus.Serilog;
-    using FileProcessing.Messages.Commands;
+    using Serilog;
 
     public class EndpointConfig : IConfigureThisEndpoint
     {
@@ -13,8 +12,6 @@ namespace FileWatcher
             endpointConfiguration.UsePersistence<LearningPersistence>();
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(StartProcessingFile), "FileRetriver");
 
             endpointConfiguration.EnableInstallers();
 

@@ -5,14 +5,34 @@
 
     public static class QuartzContextExtensions
     {
-        public static IEndpointInstance EndpointInstance(this IJobExecutionContext context)
+        public static IMessageSession MessageSession(this IJobExecutionContext context)
         {
-            return (IEndpointInstance) context.Scheduler.Context["EndpointInstance"];
+            return (IMessageSession) context.Scheduler.Context["MessageSession"];
         }
 
-        public static void SetEndpointInstance(this IScheduler scheduler, IEndpointInstance instance)
+        public static void SetMessageSession(this IScheduler scheduler, IMessageSession instance)
         {
-            scheduler.Context["EndpointInstance"] = instance;
+            scheduler.Context["MessageSession"] = instance;
+        }
+
+        public static string ReadyFolderPath(this IJobExecutionContext context)
+        {
+            return context.Scheduler.Context["ReadyFolderPath"] as string;
+        }
+
+        public static string InProgressFolderPath(this IJobExecutionContext context)
+        {
+            return context.Scheduler.Context["InProgressFolderPath"] as string;
+        }
+
+        public static void SetReadyFolderPath(this IScheduler scheduler, string readyFolderPath)
+        {
+            scheduler.Context["ReadyFolderPath"] = readyFolderPath;
+        }
+
+        public static void SetInProgressFolderPath(this IScheduler scheduler, string inprogressFolderPath)
+        {
+            scheduler.Context["InProgressFolderPath"] = inprogressFolderPath;
         }
     }
 }
